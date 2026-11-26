@@ -325,6 +325,7 @@ fun ConfigureTimerScreen(
     onOpenProDialog: () -> Unit,
     onStartTimer: (Long, Int, Int) -> Unit
 ) {
+    val context = LocalContext.current
     var selectedStyle by remember { mutableStateOf(OverlayService.STYLE_BATTERY) }
     var timerMinutes by remember { mutableStateOf("") }
     var selectedMinutesPreset by remember { mutableStateOf<Int?>(1) }
@@ -542,6 +543,30 @@ fun ConfigureTimerScreen(
         // Ads Section: Shows Ad Banner only for Free users
         if (!isProUser) {
             FreeUserAdPlaceholder(onRemoveAdsClick = onOpenProDialog)
+            Spacer(modifier = Modifier.height(16.dp))
+        }
+
+        // In-App Privacy Policy Link Button (Mandatory for Store Review)
+        TextButton(
+            onClick = {
+                val intent = Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("https://anilmsw2007.github.io/Kidshield/")
+                )
+                context.startActivity(intent)
+            },
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text("🔒", fontSize = 14.sp)
+                Spacer(modifier = Modifier.width(6.dp))
+                Text(
+                    "Privacy Policy & Family Safety",
+                    color = Color(0xFF94A3B8),
+                    fontSize = 13.sp,
+                    fontWeight = FontWeight.Medium
+                )
+            }
         }
     }
 }
