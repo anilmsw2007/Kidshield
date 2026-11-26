@@ -55,6 +55,6 @@ We may update our Privacy Policy periodically. Any updates will be reflected on 
 
 ### 8. Contact Us
 If you have any questions, concerns, or feedback regarding this Privacy Policy, please contact:
-- **Developer Name:** Anil Maurya
+- **Developer Name:** Anil Kumar Mourya
 - **Email:** anilmsw2007@gmail.com
 - **Repository:** https://github.com/anilmsw2007/Kidshield
