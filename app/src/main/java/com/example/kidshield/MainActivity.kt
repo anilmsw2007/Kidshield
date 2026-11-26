@@ -113,20 +113,18 @@ fun ParentControlScreen() {
                             fontWeight = FontWeight.Bold,
                             color = Color.White
                         )
-                        if (isProUser) {
-                            Spacer(modifier = Modifier.width(8.dp))
-                            Surface(
-                                color = Color(0xFFEAB308),
-                                shape = RoundedCornerShape(4.dp)
-                            ) {
-                                Text(
-                                    "PRO",
-                                    color = Color.Black,
-                                    fontSize = 10.sp,
-                                    fontWeight = FontWeight.Black,
-                                    modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
-                                )
-                            }
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Surface(
+                            color = Color(0xFF10B981),
+                            shape = RoundedCornerShape(4.dp)
+                        ) {
+                            Text(
+                                "100% AD-FREE",
+                                color = Color.White,
+                                fontSize = 9.sp,
+                                fontWeight = FontWeight.Bold,
+                                modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
+                            )
                         }
                     }
                 },
@@ -540,18 +538,12 @@ fun ConfigureTimerScreen(
 
         Spacer(modifier = Modifier.height(20.dp))
 
-        // Ads Section: Shows Ad Banner only for Free users
-        if (!isProUser) {
-            FreeUserAdPlaceholder(onRemoveAdsClick = onOpenProDialog)
-            Spacer(modifier = Modifier.height(16.dp))
-        }
-
         // In-App Privacy Policy Link Button (Mandatory for Store Review)
         TextButton(
             onClick = {
                 val intent = Intent(
                     Intent.ACTION_VIEW,
-                    Uri.parse("https://anilmsw2007.github.io/Kidshield/")
+                    Uri.parse("https://htmlpreview.github.io/?https://github.com/anilmsw2007/Kidshield/blob/main/index.html")
                 )
                 context.startActivity(intent)
             },
@@ -791,17 +783,17 @@ fun ProBannerCard(
                     .padding(16.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text("👑", fontSize = 28.sp)
+                Text("💖", fontSize = 28.sp)
                 Spacer(modifier = Modifier.width(12.dp))
                 Column {
                     Text(
-                        "KidShield Pro Active",
+                        "Thank You for Supporting KidShield!",
                         color = Color(0xFF34D399),
                         fontWeight = FontWeight.Bold,
-                        fontSize = 16.sp
+                        fontSize = 15.sp
                     )
                     Text(
-                        "Ad-free protection enabled. All styles unlocked.",
+                        "Your contribution keeps this app 100% ad-free for everyone.",
                         color = Color(0xFFA7F3D0),
                         fontSize = 12.sp
                     )
@@ -811,7 +803,7 @@ fun ProBannerCard(
     } else {
         Card(
             modifier = Modifier.fillMaxWidth(),
-            colors = CardDefaults.cardColors(containerColor = Color(0xFF2E1065)),
+            colors = CardDefaults.cardColors(containerColor = Color(0xFF1E293B)),
             shape = RoundedCornerShape(12.dp)
         ) {
             Row(
@@ -822,15 +814,15 @@ fun ProBannerCard(
             ) {
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
-                        "⭐ Unlock KidShield Pro",
+                        "☕ Support Development (Ad-Free)",
                         color = Color(0xFFFDE047),
                         fontWeight = FontWeight.Bold,
-                        fontSize = 16.sp
+                        fontSize = 15.sp
                     )
                     Spacer(modifier = Modifier.height(2.dp))
                     Text(
-                        "Remove all ads & get lifetime pro for ₹49 only!",
-                        color = Color(0xFFE2E8F0),
+                        "KidShield is 100% ad-free. Donate ₹29 to support developer!",
+                        color = Color(0xFF94A3B8),
                         fontSize = 12.sp
                     )
                 }
@@ -841,7 +833,7 @@ fun ProBannerCard(
                     shape = RoundedCornerShape(8.dp),
                     contentPadding = PaddingValues(horizontal = 14.dp, vertical = 6.dp)
                 ) {
-                    Text("₹49", color = Color.Black, fontWeight = FontWeight.ExtraBold, fontSize = 14.sp)
+                    Text("Donate", color = Color.Black, fontWeight = FontWeight.ExtraBold, fontSize = 13.sp)
                 }
             }
         }
@@ -850,47 +842,7 @@ fun ProBannerCard(
 
 @Composable
 fun FreeUserAdPlaceholder(onRemoveAdsClick: () -> Unit) {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(58.dp),
-        colors = CardDefaults.cardColors(containerColor = Color(0xFF1E293B)),
-        shape = RoundedCornerShape(8.dp)
-    ) {
-        Row(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(horizontal = 12.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Surface(
-                color = Color(0xFF475569),
-                shape = RoundedCornerShape(4.dp)
-            ) {
-                Text(
-                    "AD",
-                    color = Color.White,
-                    fontSize = 10.sp,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(horizontal = 4.dp, vertical = 2.dp)
-                )
-            }
-            Spacer(modifier = Modifier.width(10.dp))
-            Text(
-                "KidShield Sponsor Ad (AdMob Banner)",
-                color = Color(0xFF94A3B8),
-                fontSize = 12.sp,
-                modifier = Modifier.weight(1f)
-            )
-            Text(
-                "Remove Ads",
-                color = Color(0xFF38BDF8),
-                fontSize = 11.sp,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.clickable { onRemoveAdsClick() }
-            )
-        }
-    }
+    // Zero ads in app - completely clean UI
 }
 
 @Composable
@@ -901,6 +853,7 @@ fun ProUnlockDialog(
     val context = LocalContext.current
     var txnIdInput by remember { mutableStateOf("") }
     var errorMessage by remember { mutableStateOf<String?>(null) }
+    var selectedAmount by remember { mutableStateOf("29.00") }
 
     val upiId = "9451605191@ptyes"
 
@@ -909,10 +862,10 @@ fun ProUnlockDialog(
         containerColor = Color(0xFF1E293B),
         title = {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text("👑", fontSize = 24.sp)
+                Text("💖", fontSize = 24.sp)
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
-                    "Unlock KidShield Pro",
+                    "Support KidShield",
                     fontWeight = FontWeight.Bold,
                     color = Color.White,
                     fontSize = 18.sp
@@ -922,10 +875,32 @@ fun ProUnlockDialog(
         text = {
             Column {
                 Text(
-                    "Get a 100% Ad-Free experience and lifetime access to future premium prank screens for just ₹49.",
+                    "KidShield is built as a completely 100% Ad-Free tool for families. If you love this app, you can support its development with a small voluntary donation via UPI:",
                     color = Color(0xFFCBD5E1),
                     fontSize = 13.sp
                 )
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                // Amount selector buttons
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceEvenly
+                ) {
+                    listOf("₹29" to "29.00", "₹49" to "49.00", "₹99" to "99.00").forEach { (label, amt) ->
+                        val isSelected = selectedAmount == amt
+                        Button(
+                            onClick = { selectedAmount = amt },
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = if (isSelected) Color(0xFF10B981) else Color(0xFF334155)
+                            ),
+                            shape = RoundedCornerShape(8.dp),
+                            contentPadding = PaddingValues(horizontal = 12.dp, vertical = 4.dp)
+                        ) {
+                            Text(label, color = Color.White, fontWeight = FontWeight.Bold)
+                        }
+                    }
+                }
 
                 Spacer(modifier = Modifier.height(16.dp))
 
@@ -933,9 +908,9 @@ fun ProUnlockDialog(
                     onClick = {
                         val uri = Uri.parse("upi://pay").buildUpon()
                             .appendQueryParameter("pa", upiId)
-                            .appendQueryParameter("pn", "KidShield Pro")
-                            .appendQueryParameter("tn", "KidShield Lifetime Pro Upgrade")
-                            .appendQueryParameter("am", "49.00")
+                            .appendQueryParameter("pn", "KidShield Developer Support")
+                            .appendQueryParameter("tn", "KidShield App Donation")
+                            .appendQueryParameter("am", selectedAmount)
                             .appendQueryParameter("cu", "INR")
                             .build()
 
@@ -950,13 +925,13 @@ fun ProUnlockDialog(
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(8.dp)
                 ) {
-                    Text("Pay ₹49 via UPI (PhonePe / GPay)", color = Color.White, fontWeight = FontWeight.Bold)
+                    Text("Donate via UPI (PhonePe / GPay / Paytm)", color = Color.White, fontWeight = FontWeight.Bold)
                 }
 
                 Spacer(modifier = Modifier.height(14.dp))
 
                 Text(
-                    "Already paid? Enter 12-digit UPI UTR / Ref Number to activate:",
+                    "Optional: Enter UPI UTR / Ref Number to record supporter badge:",
                     color = Color(0xFF94A3B8),
                     fontSize = 11.sp
                 )
@@ -994,12 +969,12 @@ fun ProUnlockDialog(
                 },
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF3B82F6))
             ) {
-                Text("Activate Pro", color = Color.White, fontWeight = FontWeight.Bold)
+                Text("Confirm Donation", color = Color.White, fontWeight = FontWeight.Bold)
             }
         },
         dismissButton = {
             TextButton(onClick = onDismiss) {
-                Text("Later", color = Color(0xFF94A3B8))
+                Text("Close", color = Color(0xFF94A3B8))
             }
         }
     )
