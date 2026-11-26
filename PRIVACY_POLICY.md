@@ -16,4 +16,4 @@ KidShield does not collect, track, or share any personal identity information, p
 Payments made via UPI (PhonePe, Google Pay, Paytm) are processed directly by the respective bank/UPI application on your phone. KidShield does not collect or store card numbers or banking passwords.
 
 ### 4. Contact
-For any queries, contact: support@kidshield.app
+For any queries, contact: anilmsw2007@gmail.com
